@@ -2,6 +2,7 @@ using sfw.net;
 
 namespace Unity.VersionControl.Git
 {
+    using NiceIO;
     static class FileEventExtensions
     {
         internal static string Describe(this Event fileEvent)

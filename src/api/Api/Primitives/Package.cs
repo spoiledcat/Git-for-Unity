@@ -1,5 +1,7 @@
 using Unity.VersionControl.Git;
 using System;
+using Unity.VersionControl.Git.Json;
+using Unity.VersionControl.Git.NiceIO;
 
 namespace Unity.VersionControl.Git
 {

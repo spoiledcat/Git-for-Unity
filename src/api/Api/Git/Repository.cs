@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
+using Unity.VersionControl.Git.Logging;
+using Unity.VersionControl.Git.NiceIO;
 
 namespace Unity.VersionControl.Git
 {

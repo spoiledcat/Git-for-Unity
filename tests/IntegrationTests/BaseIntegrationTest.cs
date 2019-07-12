@@ -7,6 +7,8 @@ using System.Threading;
 using NCrunch.Framework;
 using NUnit.Framework;
 using Unity.VersionControl.Git;
+using Unity.VersionControl.Git.Logging;
+using Unity.VersionControl.Git.NiceIO;
 
 namespace IntegrationTests
 {
@@ -20,7 +22,7 @@ namespace IntegrationTests
         protected ITaskManager TaskManager { get; set; }
         protected IPlatform Platform { get; set; }
         protected IProcessManager ProcessManager { get; set; }
-        protected IProcessEnvironment GitEnvironment => Platform.GitEnvironment;
+        protected IProcessEnvironment GitEnvironment => Platform.GitProcessEnvironment;
         protected IGitClient GitClient { get; set; }
         public IEnvironment Environment { get; set; }
 

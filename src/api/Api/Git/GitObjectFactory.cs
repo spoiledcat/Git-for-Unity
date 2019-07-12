@@ -1,8 +1,7 @@
-using System;
-using Unity.VersionControl.Git;
-
 namespace Unity.VersionControl.Git
 {
+    using NiceIO;
+
     public class GitObjectFactory : IGitObjectFactory
     {
         private readonly IEnvironment environment;

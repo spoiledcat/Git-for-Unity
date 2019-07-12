@@ -68,7 +68,7 @@ namespace Unity.VersionControl.Git
                 if (!timeValue.HasValue)
                 {
                     DateTimeOffset result;
-                    if (DateTimeOffset.TryParseExact(TimeString.ToEmptyIfNull(), Constants.Iso8601Formats, CultureInfo.InvariantCulture,DateTimeStyles.None, out result))
+                    if (DateTimeOffset.TryParseExact(TimeString.ToEmptyIfNull(), Json.DateTimeFormatConstants.Iso8601Formats, CultureInfo.InvariantCulture,DateTimeStyles.None, out result))
                     {
                         timeValue = result;
                     }
@@ -82,7 +82,7 @@ namespace Unity.VersionControl.Git
             }
             private set
             {
-                timeString = value.ToString(Constants.Iso8601Format);
+                timeString = value.ToString(Json.DateTimeFormatConstants.Iso8601Format);
                 timeValue = value;
             }
         }
@@ -95,7 +95,7 @@ namespace Unity.VersionControl.Git
                 if (!commitTimeValue.HasValue)
                 {
                     DateTimeOffset result;
-                    if (DateTimeOffset.TryParseExact(CommitTimeString.ToEmptyIfNull(), Constants.Iso8601Formats, CultureInfo.InvariantCulture, DateTimeStyles.None, out result))
+                    if (DateTimeOffset.TryParseExact(CommitTimeString.ToEmptyIfNull(), Json.DateTimeFormatConstants.Iso8601Formats, CultureInfo.InvariantCulture, DateTimeStyles.None, out result))
                     {
                         commitTimeValue = result;
                     }
@@ -109,7 +109,7 @@ namespace Unity.VersionControl.Git
             }
             private set
             {
-                commitTimeString = value.ToString(Constants.Iso8601Format);
+                commitTimeString = value.ToString(Json.DateTimeFormatConstants.Iso8601Format);
                 commitTimeValue = value;
             }
         }

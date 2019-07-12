@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using Unity.VersionControl.Git.NiceIO;
 
 namespace Unity.VersionControl.Git.Tasks
 {

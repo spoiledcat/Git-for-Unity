@@ -1,6 +1,6 @@
 using System;
 
-namespace Unity.VersionControl.Git
+namespace Unity.VersionControl.Git.Logging
 {
     public interface ILogging
     {

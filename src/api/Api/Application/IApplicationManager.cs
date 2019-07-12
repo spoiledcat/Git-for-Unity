@@ -8,7 +8,7 @@ namespace Unity.VersionControl.Git
     {
         IEnvironment Environment { get; }
         IPlatform Platform { get; }
-        IProcessEnvironment GitEnvironment { get; }
+        IProcessEnvironment GitProcessEnvironment { get; }
         IProcessManager ProcessManager { get; }
         ISettings SystemSettings { get; }
         ISettings LocalSettings { get; }
@@ -16,7 +16,6 @@ namespace Unity.VersionControl.Git
         ITaskManager TaskManager { get; }
         IGitClient GitClient { get; }
         IUsageTracker UsageTracker { get; }
-        IOAuthCallbackManager OAuthCallbackManager { get; }
         bool IsBusy { get; }
         void Run();
         void InitializeRepository();

@@ -2,6 +2,8 @@ using Unity.VersionControl.Git;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VersionControl.Git.Logging;
+using Unity.VersionControl.Git.NiceIO;
 using Unity.VersionControl.Git.Tasks;
 
 namespace Unity.VersionControl.Git
@@ -16,8 +18,7 @@ namespace Unity.VersionControl.Git
         private readonly ITaskManager taskManager;
         private readonly Dictionary<string, ICredential> credentials = new Dictionary<string, ICredential>();
 
-        public GitCredentialManager(IProcessManager processManager,
-            ITaskManager taskManager)
+        public GitCredentialManager(IProcessManager processManager, ITaskManager taskManager)
         {
             this.processManager = processManager;
             this.taskManager = taskManager;
@@ -139,19 +140,19 @@ namespace Unity.VersionControl.Git
 
         private ITask<string> RunCredentialHelper(string action, string[] lines)
         {
-            SimpleProcessTask task;
+            ProcessTask<string> task;
             if (credHelper.StartsWith('!'))
             {
                 // it's a separate app, run it as such
-                task = new SimpleProcessTask(taskManager.Token, credHelper.Substring(1).ToNPath(), action);
+                task = new SimpleProcessTask(credHelper.Substring(1).ToNPath(), action);
             }
             else
             {
                 var args = $"credential-{credHelper} {action}";
-                task = new SimpleProcessTask(taskManager.Token, args);
+                task = new SimpleGitProcessTask(args);
             }
 
-            task.Configure(processManager, true);
+            task.Configure(processManager, withInput: true);
 
             task.OnStartProcess += proc =>
             {

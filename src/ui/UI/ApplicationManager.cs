@@ -99,7 +99,5 @@ namespace Unity.VersionControl.Git
             }
             base.Dispose(disposing);
         }
-
-        public override IProcessEnvironment GitEnvironment { get { return Platform.GitEnvironment; } }
     }
 }

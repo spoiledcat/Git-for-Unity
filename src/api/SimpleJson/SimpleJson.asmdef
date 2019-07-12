@@ -1,0 +1,16 @@
+{
+    "name": "Unity.VersionControl.Git.SimpleJson",
+    "references": [
+        "Unity.VersionControl.Git.NiceIO"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": []
+}

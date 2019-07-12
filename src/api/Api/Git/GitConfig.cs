@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using Unity.VersionControl.Git.NiceIO;
 
 namespace Unity.VersionControl.Git
 {

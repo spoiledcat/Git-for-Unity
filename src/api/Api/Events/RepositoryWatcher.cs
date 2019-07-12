@@ -5,6 +5,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using sfw.net;
 using Unity.VersionControl.Git;
+using Unity.VersionControl.Git.Logging;
+using Unity.VersionControl.Git.NiceIO;
 
 namespace Unity.VersionControl.Git
 {

@@ -29,9 +29,28 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="**\*.cs" Exclude="SolutionInfo.cs" />
+    <Compile Include="**\*.cs" Exclude="SolutionInfo.cs"/>
+    <Compile Include="..\Process\**\*.cs" Exclude="..\Process\SolutionInfo.cs;..\Process\Properties\*">
+      <Link>Process\%(RecursiveDir)\%(Filename)</Link>
+    </Compile>
+    <Compile Include="..\SharpZipLib\**\*.cs" Exclude="..\SharpZipLib\SolutionInfo.cs;..\SharpZipLib\Properties\*">
+      <Link>SharpZipLib\%(RecursiveDir)\%(Filename)</Link>
+    </Compile>
+    <Compile Include="..\Threading\**\*.cs" Exclude="..\Threading\SolutionInfo.cs;..\Threading\Properties\*">
+      <Link>Threading\%(RecursiveDir)\%(Filename)</Link>
+    </Compile>
+    <Compile Include="..\Utilities\**\*.cs" Exclude="..\Utilities\SolutionInfo.cs;..\Utilities\Properties\*">
+      <Link>Utilities\%(RecursiveDir)\%(Filename)</Link>
+    </Compile>
+    <Compile Include="..\NiceIO\**\*.cs" Exclude="..\NiceIO\SolutionInfo.cs;..\NiceIO\Properties\*">
+      <Link>NiceIO\%(RecursiveDir)\%(Filename)</Link>
+    </Compile>
+    <Compile Include="..\SimpleJson\**\*.cs" Exclude="..\SimpleJson\SolutionInfo.cs;..\SimpleJson\Properties\*">
+      <Link>SimpleJson\%(RecursiveDir)\%(Filename)</Link>
+    </Compile>
     <EmbeddedResource Include="PlatformResources\**\gitconfig;PlatformResources\**\git-lfs.json;PlatformResources\windows\git.json" />
     <EmbeddedResource Include="Resources\*" Exclude="Resources\*.meta" />
+    <None Remove="**\*.meta;*.DotSettings;*.ncrunch*;*.asmdef" />
   </ItemGroup>
 
   <ItemGroup>

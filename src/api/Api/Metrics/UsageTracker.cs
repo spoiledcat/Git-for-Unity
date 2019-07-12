@@ -3,6 +3,9 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using Unity.VersionControl.Git;
+using Unity.VersionControl.Git.Json;
+using Unity.VersionControl.Git.Logging;
+using Unity.VersionControl.Git.NiceIO;
 
 namespace Unity.VersionControl.Git
 {

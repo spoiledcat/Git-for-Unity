@@ -1,7 +1,15 @@
 {
     "name": "Unity.VersionControl.Git.Api",
     "references": [
-        "Unity.VersionControl.Git.Logging"
+        "Unity.VersionControl.Git.Logging",
+        "Unity.VersionControl.Git.GitInstaller",
+        "Unity.VersionControl.Git.NiceIO",
+        "Unity.VersionControl.Git.Process",
+        "Unity.VersionControl.Git.SharpZipLib",
+        "Unity.VersionControl.Git.SimpleJson",
+        "Unity.VersionControl.Git.Threading",
+        "Unity.VersionControl.Git.UnityEnvironment",
+        "Unity.VersionControl.Git.Utilities"
     ],
     "optionalUnityReferences": [],
     "includePlatforms": [

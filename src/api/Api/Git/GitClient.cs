@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Threading;
+using Unity.VersionControl.Git.Logging;
+using Unity.VersionControl.Git.NiceIO;
 using Unity.VersionControl.Git.Tasks;
 using static Unity.VersionControl.Git.GitInstaller;
 
@@ -656,12 +658,11 @@ namespace Unity.VersionControl.Git
         ///<inheritdoc/>
         public ITask<string> GetHead(IOutputProcessor<string> processor = null)
         {
-            return new FirstNonNullLineProcessTask(cancellationToken, "rev-parse --short HEAD") { Name = "Getting current head..." }
-                .Configure(processManager)
-                   .Catch(exception => exception is ProcessException &&
-                       exception.Message.StartsWith("fatal: your current branch") &&
-                       exception.Message.EndsWith("does not have any commits yet"))
-                   .Then((success, head) => success ? head : null);
+            return new FirstNonNullLineGitProcessTask("rev-parse --short HEAD", cancellationToken, processManager) { Name = "Getting current head..." }
+                .Catch(exception => exception is ProcessException &&
+                    exception.Message.StartsWith("fatal: your current branch") &&
+                    exception.Message.EndsWith("does not have any commits yet"))
+                .Then((success, head) => success ? head : null);
         }
 
         protected static ILogging Logger { get; } = LogHelper.GetLogger<GitClient>();

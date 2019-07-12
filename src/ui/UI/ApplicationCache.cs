@@ -7,6 +7,7 @@ using System.Runtime.Serialization;
 using UnityEditor;
 using UnityEngine;
 using Application = UnityEngine.Application;
+using Unity.VersionControl.Git.NiceIO;
 
 namespace Unity.VersionControl.Git
 {
@@ -38,7 +39,7 @@ namespace Unity.VersionControl.Git
                 if (!firstRunAtValue.HasValue)
                 {
                     DateTimeOffset dt;
-                    if (!DateTimeOffset.TryParseExact(firstRunAtString.ToEmptyIfNull(), Constants.Iso8601Formats,
+                    if (!DateTimeOffset.TryParseExact(firstRunAtString.ToEmptyIfNull(), Json.DateTimeFormatConstants.Iso8601Formats,
                             CultureInfo.InvariantCulture, DateTimeStyles.None, out dt))
                     {
                         dt = DateTimeOffset.Now;
@@ -50,7 +51,7 @@ namespace Unity.VersionControl.Git
             }
             private set
             {
-                firstRunAtString = value.ToString(Constants.Iso8601Format);
+                firstRunAtString = value.ToString(Json.DateTimeFormatConstants.Iso8601Format);
                 firstRunAtValue = value;
             }
         }
@@ -161,12 +162,11 @@ namespace Unity.VersionControl.Git
                         extensionInstallPath = DetermineInstallationPath();
                         unityVersion = Application.unityVersion;
                     }
-                    environment.Initialize(unityVersion, extensionInstallPath.ToNPath(), unityApplication.ToNPath(),
-                        unityApplicationContents.ToNPath(), unityAssetsPath.ToNPath());
-                    NPath? path = null;
+                    NPath path = NPath.Default;
                     if (!String.IsNullOrEmpty(repositoryPath))
                         path = repositoryPath.ToNPath();
-                    environment.InitializeRepository(path);
+                    environment.Initialize(unityVersion, extensionInstallPath.ToNPath(), unityApplication.ToNPath(),
+                        unityApplicationContents.ToNPath(), unityAssetsPath.ToNPath(), path);
                     Flush();
                 }
                 return environment;
@@ -177,8 +177,8 @@ namespace Unity.VersionControl.Git
     abstract class ManagedCacheBase<T> : ScriptObjectSingleton<T> where T : ScriptableObject, IManagedCache
     {
         [SerializeField] private CacheType cacheType;
-        [SerializeField] private string lastUpdatedAtString = DateTimeOffset.MinValue.ToString(Constants.Iso8601Format);
-        [SerializeField] private string initializedAtString = DateTimeOffset.MinValue.ToString(Constants.Iso8601Format);
+        [SerializeField] private string lastUpdatedAtString = DateTimeOffset.MinValue.ToString(Json.DateTimeFormatConstants.Iso8601Format);
+        [SerializeField] private string initializedAtString = DateTimeOffset.MinValue.ToString(Json.DateTimeFormatConstants.Iso8601Format);
         [NonSerialized] private DateTimeOffset? lastUpdatedAtValue;
         [NonSerialized] private DateTimeOffset? initializedAtValue;
         [NonSerialized] private bool isInvalidating;
@@ -278,7 +278,7 @@ namespace Unity.VersionControl.Git
             }
             set
             {
-                LastUpdatedAtString = value.ToString(Constants.Iso8601Format);
+                LastUpdatedAtString = value.ToString(Json.DateTimeFormatConstants.Iso8601Format);
                 lastUpdatedAtValue = value;
             }
         }
@@ -304,7 +304,7 @@ namespace Unity.VersionControl.Git
             }
             set
             {
-                InitializedAtString = value.ToString(Constants.Iso8601Format);
+                InitializedAtString = value.ToString(Json.DateTimeFormatConstants.Iso8601Format);
                 initializedAtValue = value;
             }
         }

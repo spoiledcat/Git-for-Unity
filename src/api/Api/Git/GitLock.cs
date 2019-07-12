@@ -1,6 +1,8 @@
 using System;
 using System.Globalization;
 using Unity.VersionControl.Git;
+using Unity.VersionControl.Git.Json;
+using Unity.VersionControl.Git.NiceIO;
 
 namespace Unity.VersionControl.Git
 {
@@ -19,8 +21,8 @@ namespace Unity.VersionControl.Git
             get
             {
                 DateTimeOffset dt;
-                if (!DateTimeOffset.TryParseExact(LockedAtString.ToEmptyIfNull(), Constants.Iso8601Formats,
-                        CultureInfo.InvariantCulture, Constants.DateTimeStyle, out dt))
+                if (!DateTimeOffset.TryParseExact(LockedAtString.ToEmptyIfNull(), Json.DateTimeFormatConstants.Iso8601Formats,
+                        CultureInfo.InvariantCulture, Json.DateTimeFormatConstants.DateTimeStyle, out dt))
                 {
                     locked_at = DateTimeOffset.MinValue;
                     return DateTimeOffset.MinValue;
@@ -29,7 +31,7 @@ namespace Unity.VersionControl.Git
             }
             set
             {
-                lockedAtString = value.ToUniversalTime().ToString(Constants.Iso8601FormatZ, CultureInfo.InvariantCulture);
+                lockedAtString = value.ToUniversalTime().ToString(Json.DateTimeFormatConstants.Iso8601FormatZ, CultureInfo.InvariantCulture);
             }
         }
         [NotSerialized] public string ID => id ?? String.Empty;
@@ -42,7 +44,7 @@ namespace Unity.VersionControl.Git
             this.id = id;
             this.path = path.IsInitialized ? path.ToString() : null;
             this.owner = owner;
-            this.lockedAtString = locked_at.ToUniversalTime().ToString(Constants.Iso8601FormatZ, CultureInfo.InvariantCulture);
+            this.lockedAtString = locked_at.ToUniversalTime().ToString(Json.DateTimeFormatConstants.Iso8601FormatZ, CultureInfo.InvariantCulture);
         }
 
         public override bool Equals(object other)

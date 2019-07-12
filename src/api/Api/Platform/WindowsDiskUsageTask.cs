@@ -1,5 +1,5 @@
-using System.Collections.Generic;
 using System.Threading;
+using Unity.VersionControl.Git.NiceIO;
 
 namespace Unity.VersionControl.Git
 {
@@ -8,7 +8,7 @@ namespace Unity.VersionControl.Git
         private readonly string arguments;
 
         public WindowsDiskUsageTask(NPath directory, CancellationToken token)
-            : base(token, new WindowsDiskUsageOutputProcessor())
+            : base(token, outputProcessor: new WindowsDiskUsageOutputProcessor())
         {
             Name = "cmd";
             arguments = string.Format("/c dir /a/s \"{0}\"", directory);

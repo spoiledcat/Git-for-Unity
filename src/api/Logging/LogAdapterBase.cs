@@ -1,4 +1,4 @@
-namespace Unity.VersionControl.Git
+namespace Unity.VersionControl.Git.Logging
 {
     public abstract class LogAdapterBase
     {

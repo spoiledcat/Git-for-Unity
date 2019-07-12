@@ -1,0 +1,19 @@
+{
+    "name": "Unity.VersionControl.Git.Threading",
+    "references": [
+        "Unity.VersionControl.Git.Logging",
+        "Unity.VersionControl.Git.NiceIO",
+        "com.unity.mono-posix",
+        "Unity.VersionControl.Git.Utilities"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": []
+}

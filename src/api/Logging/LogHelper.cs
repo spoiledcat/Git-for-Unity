@@ -2,6 +2,8 @@ using System;
 
 namespace Unity.VersionControl.Git
 {
+    using Logging;
+
     public static class LogHelper
     {
         private static readonly LogAdapterBase nullLogAdapter = new NullLogAdapter();

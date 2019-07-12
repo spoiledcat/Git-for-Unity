@@ -51,8 +51,8 @@ namespace IntegrationTests
             env.Repository = repo;
 
             var platform = new Platform(env);
-            ProcessManager = new ProcessManager(env, platform.GitEnvironment, Token);
-            var processEnv = platform.GitEnvironment;
+            ProcessManager = new ProcessManager(env, platform.GitProcessEnvironment, Token);
+            var processEnv = platform.GitProcessEnvironment;
             var installer = new GitInstaller(env, ProcessManager, TaskManager.Token);
             var state = installer.FindSystemGit(new GitInstaller.GitInstallationState());
             env.GitInstallationState = state;

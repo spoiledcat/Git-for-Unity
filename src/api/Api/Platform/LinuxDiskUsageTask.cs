@@ -1,21 +1,19 @@
 using System.Threading;
+using Unity.VersionControl.Git.NiceIO;
 
 namespace Unity.VersionControl.Git
 {
-    class LinuxDiskUsageTask : ProcessTask<int>
+    class LinuxDiskUsageTask : SimpleProcessTask<int>
     {
-        private readonly string arguments;
-
-        public LinuxDiskUsageTask(NPath directory, CancellationToken token)
-            : base(token, new LinuxDiskUsageOutputProcessor())
+        public LinuxDiskUsageTask(NPath directory, CancellationToken? token = null)
+            : base("du" + UnityEnvironment.ExecutableExtension,
+                string.Format("-sH \"{0}\"", directory),
+                new LinuxDiskUsageOutputProcessor(),
+                token: token)
         {
-            Name = "du" + DefaultEnvironment.ExecutableExt;
-            arguments = string.Format("-sH \"{0}\"", directory);
         }
 
-        public override string ProcessName { get { return Name; } }
-        public override string ProcessArguments { get { return arguments; } }
-        public override TaskAffinity Affinity { get { return TaskAffinity.Concurrent; } }
+        public override TaskAffinity Affinity => TaskAffinity.Concurrent;
         public override string Message { get; set; } = "Getting directory size...";
     }
 }

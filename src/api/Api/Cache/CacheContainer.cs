@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using Unity.VersionControl.Git;
+using Unity.VersionControl.Git.Logging;
 
 namespace Unity.VersionControl.Git
 {
@@ -111,7 +112,7 @@ namespace Unity.VersionControl.Git
 
             cacheType = type;
             updatedTimeValue = when;
-            updatedTimeString = when.ToString(Constants.Iso8601Format);
+            updatedTimeString = when.ToString(Json.DateTimeFormatConstants.Iso8601Format);
         }
 
         public override int GetHashCode()
@@ -163,14 +164,14 @@ namespace Unity.VersionControl.Git
                 if (!updatedTimeValue.HasValue)
                 {
                     DateTimeOffset result;
-                    if (DateTimeOffset.TryParseExact(updatedTimeString.ToEmptyIfNull(), Constants.Iso8601Formats, CultureInfo.InvariantCulture, DateTimeStyles.None, out result))
+                    if (DateTimeOffset.TryParseExact(updatedTimeString.ToEmptyIfNull(), Json.DateTimeFormatConstants.Iso8601Formats, CultureInfo.InvariantCulture, DateTimeStyles.None, out result))
                     {
                         updatedTimeValue = result;
                     }
                     else
                     {
                         updatedTimeValue = DateTimeOffset.MinValue;
-                        updatedTimeString = updatedTimeValue.Value.ToString(Constants.Iso8601Format);
+                        updatedTimeString = updatedTimeValue.Value.ToString(Json.DateTimeFormatConstants.Iso8601Format);
                     }
                 }
 

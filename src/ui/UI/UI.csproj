@@ -37,6 +37,7 @@
   <ItemGroup>
     <Compile Include="**\*.cs" Exclude="SolutionInfo.cs" />
     <EmbeddedResource Include="IconsAndLogos\*.png" />
+    <None Remove="**\*.meta;*.DotSettings;*.ncrunch*;*.asmdef" />
   </ItemGroup>
 
   <Import Project="$(SolutionDir)\common\build.targets" />

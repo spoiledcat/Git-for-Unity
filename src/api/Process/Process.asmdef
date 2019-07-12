@@ -1,0 +1,18 @@
+{
+    "name": "Unity.VersionControl.Git.Process",
+    "references": [
+        "Unity.VersionControl.Git.NiceIO",
+        "Unity.VersionControl.Git.Threading",
+        "Unity.VersionControl.Git.Logging",
+        "Unity.VersionControl.Git.UnityEnvironment",
+        "Unity.VersionControl.Git.Utilities"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": []
+}
