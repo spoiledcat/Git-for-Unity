@@ -5,20 +5,21 @@ environment:
 
 install:
 - ps: |
-    $version = Get-Content "$($env:appveyor_build_folder)\common\SolutionInfo.cs" | %{ $regex = "private const string [\w]+Version = `"([^`"]*)`""; if ($_ -match $regex) { $matches[1] } }
-    $env:package_version="$($version).$($env:APPVEYOR_BUILD_NUMBER)"
-    Update-AppveyorBuild -Version $env:package_version
+    Set-Location $env:appveyor_build_folder
+
+    $env:package_version = scripts\Set-BuildVersion -AppVeyor
+
     $message = "Building "
     $message += " version " + $env:package_version + " "
     Write-Host $message
 
     $destdir = Join-Path $env:appveyor_build_folder 'lib'
     $destfile = Join-Path $destdir 'deps.zip'
-    Set-Location $destdir
+
+    Push-Location $destdir
     Invoke-WebRequest "https://ghfvs-installer.github.com/dependencies/deps.zip" -OutFile $destfile
     &'7z' -bb3 x 'deps.zip'
-
-    Set-Location $env:appveyor_build_folder
+    Pop-Location
 
     nuget restore GitForUnity.sln
 
