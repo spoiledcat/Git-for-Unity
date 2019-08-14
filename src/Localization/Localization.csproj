@@ -38,7 +38,7 @@
     <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFramework)' == 'net35' ">
-    <PackageReference Include="Custom.Unity.NETFramework.ReferenceAssemblies.net35" Version="1.0.0-custom" IncludeAssets="runtime; build; native; contentfiles; analyzers" PrivateAssets="All" />
+    <PackageReference Include="Custom.Unity.NETFramework.ReferenceAssemblies.net35" Version="1.0.1-custom" IncludeAssets="runtime; build; native; contentfiles; analyzers" PrivateAssets="All" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Localization.Designer.cs">
